@@ -1,10 +1,15 @@
 import psycopg2
 
+
 con = psycopg2.connect(
     host='localhost',
     database='castlequest',
-    user='castlequest',
-    password='HudenBurger23')
+    user='castlequest_admin',
+    password='Woodruff1787')
 
-#Hey I have no idea how you made your leaderboards!
-#But update them using SQL!
+print('''Updating leaderboards(top_players,top_player_guild_xp)''')
+cursor=con.cursor()
+cursor.execute('REFRESH MATERIALIZED VIEW top_players', 'REFRESH MATERIALIZED VIEW top_player_guild_xp')
+print('''Top player leaderboads updated''' )
+print('''Top player within each guild leaderboads updated''' )
+
